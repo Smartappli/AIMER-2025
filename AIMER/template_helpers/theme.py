@@ -1,7 +1,8 @@
-from django.conf import settings
-from pprint import pprint
 import os
 from importlib import import_module, util
+from pprint import pprint
+
+from django.conf import settings
 
 
 # Core TemplateHelper class
@@ -77,7 +78,8 @@ class TemplateHelper:
         )
 
         # RTL Supported template
-        context["rtl_support_value"] = "/rtl" if context.get("rtl_support") else ""
+        context["rtl_support_value"] = "/rtl" if context.get(
+            "rtl_support") else ""
 
         # RTL Mode/Layout
         context["rtl_mode_value"], context["text_direction_value"] = (

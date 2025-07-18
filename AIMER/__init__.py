@@ -1,6 +1,6 @@
 # from AIMER.bootstrap import TemplateBootstrap
 from django.conf import settings
-
+from AIMER.celery import app as celery_app
 from AIMER.template_helpers.theme import TemplateHelper
 
 
@@ -31,3 +31,5 @@ class TemplateLayout:
         TemplateHelper.map_context(context)
 
         return context
+
+__all__ = ('celery_app',)

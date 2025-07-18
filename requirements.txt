@@ -1,0 +1,15 @@
+# Core
+Django[argon2] >=5.2, <5.3  # Django framework
+python-dotenv==1.1.1  # Load constant onto .env
+
+# Async Tasks
+celery==5.5.3  # Back processing
+
+# GraphQL API
+graphene==3.4.3  # Support for Graphql
+graphene-django==3.2.3  # Graphql Django Wrapper
+
+# REST API
+fastapi==0.116.1
+pydantic==2.11.7
+uvicorn[standard]==0.35.0

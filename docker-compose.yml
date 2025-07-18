@@ -1,0 +1,88 @@
+services:
+  web:
+    build: .
+    container_name: aimer_web
+    command: gunicorn AIMER.wsgi:application --bind 0.0.0.0:9000
+    volumes:
+      - .:/app
+    ports:
+      - "9000:9000"
+    env_file:
+      - .env
+    depends_on:
+      - ollama
+      # - omop
+      # - postgis
+      #- postgres
+      - pgvector
+      - qdrant
+      - redis
+
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  # omop:
+  #   image:
+
+  # postgres:
+  #   image: ""
+
+  # postgis:
+
+  pgvector:
+    image: ankane/pgvector
+    restart: always
+    environment:
+      POSTGRES_DB: aimer
+      POSTGRES_USER: aimeruser
+      POSTGRES_PASSWORD: aimerpass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5433"
+
+  redis:
+    image: redis:8
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    container_name: aimer_celery
+    command: celery -A aimer worker -l info
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
+  flower:
+    image: mher/flower
+    ports:
+      - "5555:5555"
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+
+
+
+  quadrant:
+    image: tryquadrant/quadrant-server:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - QUADRANT_API_KEY=your-quadrant-api-key
+    volumes:
+      - quadrant_data:/data
+
+volumes:
+  pgdata:
+  ollama_data:
+  quadrant_data:

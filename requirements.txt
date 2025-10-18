@@ -11,5 +11,5 @@ graphene-django==3.2.3  # Graphql Django Wrapper
 
 # REST API
 fastapi==0.116.1
-pydantic==2.11.7
+pydantic==2.12.3
 uvicorn[standard]==0.35.0

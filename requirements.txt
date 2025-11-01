@@ -1,6 +1,6 @@
 # Core
 Django[argon2] >=5.2, <5.3  # Django framework
-python-dotenv==1.1.1  # Load constant onto .env
+python-dotenv==1.2.1  # Load constant onto .env
 
 # Async Tasks
 celery==5.5.3  # Back processing

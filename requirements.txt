@@ -1,5 +1,5 @@
 # Core
-Django[argon2] >=5.2, <5.3  # Django framework
+Django[argon2] >=6, <6.1  # Django framework
 python-dotenv==1.2.1  # Load constant onto .env
 
 # Async Tasks

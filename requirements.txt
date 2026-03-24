@@ -10,6 +10,6 @@ graphene==3.4.3  # Support for Graphql
 graphene-django==3.2.3  # Graphql Django Wrapper
 
 # REST API
-fastapi==0.135.1
+fastapi==0.135.2
 pydantic==2.12.5
 uvicorn[standard]==0.42.0
